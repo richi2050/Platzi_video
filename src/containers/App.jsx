@@ -18,8 +18,6 @@ const App = () => (
         <CarouiselItem />
         <CarouiselItem />
         <CarouiselItem />
-        <CarouiselItem />
-		<CarouiselItem />
       </Carousel>
     </Categories>
 	<Footer />
