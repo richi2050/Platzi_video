@@ -5,15 +5,13 @@ import Categories from "../components/Categories";
 import Carousel from "../components/Carousel";
 import CarouiselItem from "../components/CarouselItem";
 import Footer from "../components/Footer";
-
-
 import "../assets/styles/App.scss";
 
 const App = () => (
   <div className="App">
     <Header />
     <Search />
-    <Categories>
+    <Categories title="Titulo 1">
       <Carousel>
         <CarouiselItem />
         <CarouiselItem />
@@ -21,6 +19,7 @@ const App = () => (
         <CarouiselItem />
         <CarouiselItem />
         <CarouiselItem />
+		<CarouiselItem />
       </Carousel>
     </Categories>
 	<Footer />
