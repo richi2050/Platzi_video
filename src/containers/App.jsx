@@ -34,6 +34,16 @@ const App = () => {
         </Carousel>
       </Categories>
 
+
+
+	  <Categories title="Originales ">
+        <Carousel>
+		{initialState.originals.map( item => 
+			<CarouiselItem key={item.id} {...item}/>
+		)}
+        </Carousel>
+      </Categories>
+
       <Footer />
     </div>
   );
