@@ -1,0 +1,314 @@
+
+Curso Práctico de React JS
+
+DOM, Virtual DOM y React DOM
+
+es una copia fiel del dom para dar perfomance y velkocidad a los desarrollos para saber cual ha sido actualizado es desir non va a refresacar toda la pagina si no solo los elementos que se actualizan
+
+
+----------------------------------------------------
+Create React App y Tipos de Componentes
+
+node_modules =  aqui existen todos los elemento que se requieren para trabajar con react.
+public = se encuentra todos los archivos publico.
+src = aqui es donde se ecneuntra todos los componentes de la aplicacion
+
+Los componentes Stateful son los más robustos de React. se extienden de React.Component se manejas estados, eventos y el permite el ciclo de vida
+
+Ejemplo de Stateful
+
+import React, { Component } from 'react';
+
+class Stateful extends Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            hello: 'Hola Mundo'
+        }
+    }
+
+    render() {
+        return (
+          <h1>{this.state.hello}</h1>
+        )
+      } 
+}
+export default Stateful;
+
+
+Componente Stateless
+este no depende de tener un estado ni un ciclo de vida ni propiedades.
+import React from 'react';
+
+const Stateless = () => {
+    return(
+        <h1> Hola mundo</h1>
+    );
+}
+export default Stateless;
+
+
+import React from 'react';
+
+const Presentacional = () => <h1>hola mundo</h1>;
+
+export default Presentacional;
+------------------------------------------------------------
+
+JSX: JavaScript + HTML
+
+
+import React from'react';
+
+const HolaMundo = () => {
+    const hello = "Hola m,undi";
+    const isTrue = true;
+
+    return(
+        <divclassName="HolaMundo">
+            <h1>{ hello }</h1>
+            <h2>Curso esencial de react</h2>
+            <imgsrc="https://arepa.s3.amazonaws.com/react.png"alt="React"/>
+            {isTrue ? <h4> Esto es verdadero</h4> : <h5>Soy Falso</h5>}
+            {isTrue && <h4>Soy verdadero</h4>}
+        </div>
+    );
+}
+
+export default HolaMundo;
+
+------------------------------------------------------------------------------
+
+Props: Comunicación entre Componentes
+
+Las Props son la forma de enviar y recibir información entre componentes, es la forma de comunicacion de cada componente con toda la aplicacion
+
+import React from 'react';
+
+const Button = props => {
+    const {texto} = props;
+    return (
+        <div>
+            <button type="button">{ props.texto }</button>
+            <button type="button">{ texto }</button>
+        </div>
+    )
+};
+export default Button;
+
+------------------------------------------------------------
+
+
+¿Qué son los métodos del ciclo vida?
+
+Los componentes en react pasan por un Montaje, Actualización, Desmontaje y Manejo de errores.
+
+Montaje: En esta fase nuestro componente se crea junto a la lógica y los componentes internos y luego es insertado en el DOM.
+
+Desmontaje: En esta etapa nuestro componente “Muere” cuando nosotros no necesitamos un elemento de nuestra aplicación, podemos pasar por este ciclo de vida y de esta forma eliminar el componente de la representación que tiene en el DOM
+
+Actualización: En esta fase nuestro componente está al pendiente de cambios que pueden venir a través de un cambio en “state” o “props” esto en consecuencia realizan una acción dentro de un componente.
+
+
+Manejo de Errores:
+Cuando nuestro código se ejecuta y tiene un error, podemos entrar en una fase donde se puede entender mejor qué está sucediendo con la aplicación.
+
+Algo que debemos tener en cuenta es que un componente NO debe pasar por toda las fases, un componente puede ser montado y desmontado sin pasar por la fase de actualización o manejo de errores.
+
+Ahora que entendemos las fases que cumple el ciclo de vida en React vamos a entrar a detalle en cada uno de ellos para ver qué piezas de código se ejecutan y nos ayudarán a crear aplicaciones en React pasando por un ciclo de vida bien estructurado.
+
+
+
+-Montado:
+	Constructor()
+
+	Este es el primer método al que se hace un llamado, aquí es donde se inicializan los métodos controladores, eventos del estado.
+
+	getDerivedStateFromProps()
+
+	Este método se llama antes de presentarse en el DOM y nos permite actualizar el estado interno en respuesta a un cambio en las propiedades, es considerado un método de cuidado, ya que su implementación puede causar errores sutiles.
+
+	render()
+
+	Si queremos representar elementos en el DOM en este método es donde se escribe esta lógica, usualmente utilizamos JSX para trabajar y presentar nuestra aplicación.
+
+	ComponentDidMount()
+
+	Este método se llama inmediatamente que ha sido montado en el DOM, aquí es donde trabajamos con eventos que permitan interactuar con nuestro componente.
+
+-Actualización:
+	getDerivedStateFromProps()
+
+	Este método es el primero en ejecutarse en la fase de actualización y funciona de la misma forma que en el montaje.
+
+	shouldComponentUpdate()
+
+	Dentro de este método se puede controlar la fase de actualización, podemos devolver un valor entre verdadero o falso si queremos actualizar o no el componente y es utilizado principalmente para optimización.
+
+	render()
+
+	Se llama el método render que representa los cambios en el DOM.
+
+	componentDidUpdate()
+
+	Este método es invocado inmediatamente después de que el componente se actualiza y recibe como argumentos las propiedades y el estado y es donde podemos manejar nuestro componente.
+
+-Desmontado
+	componentWillUnmount()
+
+	Este método se llama justo antes de que el componente sea destruido o eliminado del DOM.
+
+	Manejo de Errores:
+	getDerivedStateFromError()
+
+	Una vez que se lanza un error este es el primer método que se llama, el cual recibe el error como argumento y cualquier valor devuelto en este método es utilizado para actualizar el estado del componente.
+
+	componentDidCatch()
+
+	Este método es llamado después de lanzarse un error y pasa como argumento el error y la información representada sobre el error.
+
+	Ahora que entendemos cada una de las fases que tiene el ciclo de vida de react, podemos utilizarlas según sea necesario en nuestra aplicación y de esta forma crear las interacciones que necesitemos.
+
+
+------------------------------------------------------------------------------------------------
+State - Events
+
+Esl estado en react es un objeto, al cual le podemos definir variables de tipo string, numero, boolenano o funciones este
+
+
+import React, {Component} from 'react';
+
+class Button extends Component{
+    state = {
+        count : 0
+    }
+
+    handleClick = () => {
+        this.setState({
+            count: this.state.count + 1,
+        });
+
+    }
+
+    render(){
+        const { count } = this.state;
+        return (
+            <div>
+    <h1>Manzanas { count }</h1>
+                <button type="button" onClick={ this.handleClick }>Click</button>
+            </div>
+        )
+    }
+}
+export default Button;
+
+
+------------------------------------------------------------------------------------------------------
+Instalacion y configuracion de entorno
+
+- Inicializa el proyecto: npm init -y, se incializa el proyecto (se genera el package.json).
+- Esta es la Estructura del proyecto
+		- src
+		- public
+		- src\components
+		- src\index.js
+		- public\index.html
+- Se instala react y react-dom
+		- npm i --save react react-dom	
+
+---------------------------------------------------------------------------------------------------
+
+
+Agregando compatibilidad con todos los navegadores usando Babel
+
+Babel: tranforma codigo javascript para que este pueda ser interpretado he identificado por todos los navegadores.
+
+instalacion de babel
+	- npm i --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
+
+.babelrc
+
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
+
+
+
+-----------------------------------------------------
+
+Webpack: Empaquetando nuestros módulos
+
+
+Webpack: es una herramienta que nos ayuda a compilar multiples archivos (JavaScript, HTML, CSS, imágenes) 
+
+
+npm i webpack webpack-cli html-webpack-plugin html-loader  --save-dev
+
+en package.json en la seccion de scripts  se agrega "build": "webpack --mode production"
+
+
+webpack.config.js
+
+const path = require('path');
+const HtmlWebPatckPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
+    },
+    resolve: {
+        extensions: ['.js','.jsx']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test:/\.htmml$/,
+                use: [
+                    {
+                        loader:'html-loader'
+                    }
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new HtmlWebPatckPlugin({
+            template: './public/index.html',
+            filename: './index.html'
+        }),
+    ]
+};
+
+
+se corre el npm run build
+
+
+------------------------------------------------------------------------------------------------
+Webpack Dev Server: Reporte de errores y Cambios en tiempo real
+
+npm install --save-dev webpack-dev-server
+
+se azgrega en package.json en la seccion de script el siguiente codigo   "start": "webpack-dev-server --open development"
+
+
+npm run start
+
+
+
+
+
+
+
+Ricardozs-2050
