@@ -12,4 +12,4 @@ import App from './routes/App';
 ReactDom.render(<Provider>
   <App />
 </Provider>,
-document.getElementById('app'));
+  document.getElementById('app'));
