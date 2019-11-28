@@ -5,15 +5,15 @@ import Play from '../assets/static/play-icon.png';
 import Plus from '../assets/static/plus-icon.png';
 
 const CarouiselItem = ({ cover, title, year, contentRating, duration }) => (
-  <div className="carousel-item">
-    <img className="carousel-item__img" src={cover} alt={title} />
-    <div className="carousel-item__details">
+  <div className='carousel-item'>
+    <img className='carousel-item__img' src={cover} alt={title} />
+    <div className='carousel-item__details'>
       <div>
-        <img className="carousel-item__details--img" src={Play} alt="Play Icon" />
-        <img className="carousel-item__details--img" src={Plus} alt="Plus Icon" />
+        <img className='carousel-item__details--img' src={Play} alt='Play Icon' />
+        <img className='carousel-item__details--img' src={Plus} alt='Plus Icon' />
       </div>
-      <p className="carousel-item__details--title">{title}</p>
-      <p className="carousel-item__details--subtitle">
+      <p className='carousel-item__details--title'>{title}</p>
+      <p className='carousel-item__details--subtitle'>
         {`${year} ${contentRating} ${duration}`}
       </p>
     </div>
